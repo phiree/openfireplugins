@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin>
+    <class>org.jivesoftware.openfire.plugin.UseStatePlugin</class>
+    <name>获得所有用户状态</name>
+    <description>允许用户通过HTTP请求获得状态,并以json的格返回用户的状态信息。添加了发送时间前后打印</description>
+    <author>符志龙</author>
+    <version>1.0.1</version>
+    <date>30/12/2015</date>
+    <minServerVersion>3.9.0</minServerVersion>
+   <adminconsole>		
+        <tab id="tab-server">
+            <sidebar id="sidebar-server-settings">
+                <item id="getuserstate" name="获得用户状态插件" url="getuserstate.jsp"
+                     description="显示发送网址页面" />
+            </sidebar>
+        </tab>
+    </adminconsole>
+    
+</plugin>
