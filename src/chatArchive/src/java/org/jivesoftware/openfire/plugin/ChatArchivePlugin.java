@@ -37,6 +37,8 @@ import org.jivesoftware.openfire.user.UserManager;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import org.dom4j.Element;
 import org.xmpp.packet.JID;
 import org.xmpp.packet.Message;
 import org.xmpp.packet.Packet;
@@ -64,7 +66,7 @@ public class ChatArchivePlugin implements PacketInterceptor ,Plugin{
     // Plugin Interface
 @Override
     public void initializePlugin(PluginManager manager, File pluginDirectory) {
-    	System.out.println("ChatArchivePlugin Started ff");
+    	System.out.println("ChatArchivePlugin Started gd");
         interceptorManager.addInterceptor(this);
 
 
@@ -97,8 +99,10 @@ public class ChatArchivePlugin implements PacketInterceptor ,Plugin{
         if (packet instanceof Message) {
             Message message = (Message) copyPacket;
 
+            Element extElement =message.getChildElement("ext","ihelper:notice:order");
+            debug("extElement is "+extElement);
             // 一对一聊天，单人模式
-            if (message.getType() == Message.Type.chat) {
+            if (message.getType() == Message.Type.chat ||extElement!=null) {
                 log.info("单人聊天信息：{}", message.toXML());
                 // 程序执行中；是否为结束或返回状态（是否是当前session用户发送消息）
                 if (processed || !incoming) {
